@@ -1,3 +1,4 @@
+const wordNumbers = require("words-to-numbers");
 
 function csvJSON(csv){
 
@@ -22,7 +23,12 @@ function csvJSON(csv){
         var currentline=lines[i].split(",");
   
         for(var j=0;j<headers.length;j++){
-            obj[headers[j]] = currentline[j];
+            if(headers[j] == "num-of-cylinders"){
+                obj[headers[j]] = wordNumbers.wordsToNumbers(currentline[j]);
+            }
+            else{
+                obj[headers[j]] = currentline[j];
+            }
         }
   
         result.push(obj);

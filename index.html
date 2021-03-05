@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <title>Embedding Vega-Lite</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.19.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.0.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.15.1"></script>
+  </head>
+  <body>
+    <div id="vis" style="width: 100%"></div>
+    <div id="vis2"></div>
+    <div id="vis3"></div>
+
+    <script type="text/javascript">
+
+      let vis1Spec = {
+        $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+        description: 'A simple bar chart with embedded data.',
+        data: {
+          url: "data/data.json"
+        },
+        mark: 'tick',
+        encoding: {
+          y: {field: 'num-of-cylinders', type: 'ordinal'},
+          x: {field: 'price', type: 'quantitative'},
+        },
+      };
+      vegaEmbed('#vis', vis1Spec);
+
+      let vis2Spec = {
+        $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+        description: 'A simple bar chart with embedded data.',
+        data: {
+          url: "data/data.json"
+        },
+        mark: 'point',
+        encoding: {
+          x: {field: 'make', type: 'ordinal'},
+          y: {field: 'price', type: 'quantitative'},
+        },
+      };
+      vegaEmbed('#vis2', vis2Spec);
+
+      let vis3Spec = {
+        $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+        description: 'A simple bar chart with embedded data.',
+        data: {
+          url: "data/data.json"
+        },
+        mark: 'bar',
+        encoding: {
+          column: {
+            field: "make", type: "ordinal", spacing: 10
+          },
+          y: {
+            aggregate: "count", 
+            field: "fuel-type",
+            title: "Number of automobiles",
+            axis: {grid: false}
+          },
+          x: {
+            field: "fuel-type",
+            axis: {title: ""}
+          },
+          color: {
+            field: "fuel-type",
+            scale: {range: ["#675193", "#ca8861"]}
+          }
+        },
+        
+      };
+      vegaEmbed('#vis3', vis3Spec);
+
+    </script>
+  </body>
+</html>

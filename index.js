@@ -16,12 +16,7 @@ function csvJSON(csv){
         let obj = {};
         let currentline=lines[i].split(",");
         for(let j=0;j<headers.length;j++){
-            if(headers[j] == "num-of-cylinders"){
-                obj[headers[j]] = wordNumbers.wordsToNumbers(currentline[j]);
-            }
-            else{
-                obj[headers[j]] = currentline[j];
-            }
+            obj[headers[j]] = currentline[j];
         }
         result.push(obj);
     }
